@@ -80,7 +80,7 @@
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="catalog.html">Catalog</a>
 								<a class="dropdown-item" href="item.html">Item Detail</a>
-								<a class="dropdown-item" href="cart.html">Cart</a>
+								<a class="dropdown-item" href="cart">Cart</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="contact.html">Contact</a>
 
@@ -122,7 +122,7 @@
 									</li>
 								</ul>
 								
-								<a href="cart.html" class="btn btn-lg btn-full-width btn-primary" style="margin: 0;">View Cart</a></div>
+								<a href="/cart" class="btn btn-lg btn-full-width btn-primary" style="margin: 0;">View Cart</a></div>
 						</li>
 					</ul>
 				</div>
