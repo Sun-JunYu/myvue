@@ -137,7 +137,7 @@
 
                     // 汇总
                     total += this.tlist[i].num;
-                    prict += this.tlist[i].prict;
+                    prict += (this.tlist[i].num * this.tlist[i].prict);
 
                 }
 
