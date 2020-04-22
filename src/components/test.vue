@@ -30,15 +30,16 @@
             </tr>
 
         </table>
-        总数量：{{ totalCount() }} <br/>
-        总价格：{{ totalprict() }}<br/><br/>
+        总数量：{{ totalCount()[0] }} <br/>
+        总价格：{{ totalCount()[1] }}<br/><br/>
         
         {{ counter }}
         <button @click='counter++'>加一</button> <br><br><br>
 
-        {{ reverse_msg2() }}
+        {{ reverse_msg2() }}    <br>
 
         {{ reverse_msg }}
+        <br><br><br>
 
         <ul>
 
@@ -124,42 +125,26 @@
         // 自定义方法
         methods:{
 
-            // 购物车总数量
+            // 购物车总汇
             totalCount:function(){
 
                 // 默认数量
                 let total = 0;
-
-                //遍历
-                for (let i=0,l=this.tlist.length;i<l;i++){
-
-                    // 汇总
-                    total += this.tlist[i].num;
-
-                }
-
-                return total
-
-            },
-
-
-            // 购物车总价格
-            totalprict:function(){
-
-                // 默认价格
                 let prict = 0;
 
                 //遍历
                 for (let i=0,l=this.tlist.length;i<l;i++){
 
                     // 汇总
+                    total += this.tlist[i].num;
                     prict += this.tlist[i].prict;
 
                 }
 
-                return prict
+                return [total,prict]
 
             },
+
             
 
             // // 购物车减法
@@ -214,7 +199,7 @@
 
 <style>
 
-.on {background-color: aquamarine;}
-.off {background-color: chartreuse;}
+/* .on {background-color: aquamarine;}
+.off {background-color: chartreuse;} */
 
 </style>
