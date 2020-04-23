@@ -6,6 +6,7 @@ import item from '@/components/item'
 import detail from '@/components/detail'
 import mytest from '@/components/mytest'
 import test from '@/components/test'
+import register from '@/components/register'
 
 Vue.use(Router)
 
@@ -14,11 +15,6 @@ var routes = [
           path:'/',
           name:'index',
           component:index
-        },
-        {
-          path:'/test',
-          name:'test',
-          component:test
         },
         {
           path:'/cart',
@@ -39,7 +35,17 @@ var routes = [
           path:'/mytest',
           name:'mytest',
           component:mytest
-        }
+        },
+        {
+          path:'/test',
+          name:'test',
+          component:test
+        },
+        {
+          path:'/register',
+          name:'register',
+          component:register
+        },
 ]
 
 export default new Router({
