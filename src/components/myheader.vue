@@ -127,11 +127,28 @@
                         </ul>
                     </div>
                 </div>
+
+                <div v-if="username==''">
+
+                    <router-link to='/login'>登录</router-link>/
+                    <router-link to='/register'>注册</router-link>register
+
+                </div>
+
+                <div v-else>
+
+                    欢迎您：{{ username }}
+
+                    &nbsp;&nbsp;
+                    <button color='block'>登出</button>
+
+                </div>
+
             </nav>
         </section>
 
     </div>
-    
+
 </template>
 
 
@@ -141,6 +158,7 @@
             return{
 
                 msg:'<h1>这是一个变量</h1>',
+                username:''
                 
             }  
             
@@ -148,6 +166,20 @@
         },
         // 钩子方法
         mounted:function(){
+
+            // 判断是否登录
+            var uname = localStorage.getItem('username');
+            if(uname == null){
+
+                // 没登陆
+                this.username= '';
+
+            }else{
+
+                // 登录
+                this.username = uname;
+
+            }
 
 
 
