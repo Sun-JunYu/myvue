@@ -1,6 +1,10 @@
 <template>
   <div>
-		<myheader></myheader>
+
+
+
+  	<myheader></myheader>
+
 		
 		<div id="carousel" class="carousel slide" data-ride="carousel">
 		
@@ -160,7 +164,7 @@
  
 <script>
 
-// 导入组件
+//导入组件
 import myheader from './myheader.vue'
 
 export default {
@@ -169,9 +173,11 @@ export default {
       msg: "这是一个变量",
     }
   },
-   // 注册组件标签
-   components:{
-	  'myheader':myheader
+  //注册组件标签
+  components:{
+
+  	'myheader':myheader
+
   },
   mounted:function(){
 

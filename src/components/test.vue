@@ -1,205 +1,232 @@
 <template>
-    <div>
-        <!-- 购物车 -->
-        <table>
+	<div>
 
-            <tr> <td>名称</td> <td>数量</td> <td>价格</td> </tr>
+		<!--购物车-->
 
-            <tr v-for="(item,index) in tlist">
+		<table>
 
-                <td>
+			<tr> <td>名称</td> <td>数量</td> <td>价格</td> </tr>
+			
+			<tr v-for="(item,index) in tlist">
+				
+				<td>
+						
+						{{ item.text }}
 
-                    {{ item.test }}
+				</td>
 
-                </td>
+				<td>
 
-                <td>
-                    <button @click="minus(index,1)">-</button>
-                    <input type="text" v-model='item.num'>
-                    <button @click="minus(index,0)">+</button>
+						<button @click="minus(index,'-')">-</button>
 
-                </td>
+						<input type="number" v-model="item.num" >
 
-                <td>
+						<button  @click="minus(index,'+')" >+</button>
 
-                    {{ item.prict }}
+				</td>
 
-                </td>
+				<td>
+						
+						{{ item.price }}
 
-
-            </tr>
-
-        </table>
-        总数量：{{ totalCount()[0] }} <br/>
-        总价格：{{ totalCount()[1] }}<br/><br/>
-        
-        {{ counter }}
-        <button @click='counter++'>加一</button> <br><br><br>
-
-        {{ reverse_msg2() }}    <br>
-
-        {{ reverse_msg }}
-        <br><br><br>
-
-        <ul>
-
-            <li v-for="(item,index) in tlist" :class="{
-                on:index%2==0,off:index%2!=0
-            }">
-
-                {{ item.test }}
-
-            </li>
-
-        </ul>
-
-        <div v-if="type === '狗'">狗</div>
-
-        <div v-else-if="type === '猫'">B</div>
-
-        <div v-else>
-            既不是狗，也不是猫。
-        </div>
-
-        <h2 v-if='ok'>今天天气不错</h2>
-
-        <h2 v-show='ok'>阳光明媚</h2>
-
-        <div v-html='msg'></div>
-        {{ msg }}    
+				</td>
 
 
-    </div>
+			</tr>
+
+
+
+		</table>
+
+		总数量:{{ totalCount(0) }}
+
+		&nbsp;&nbsp;
+
+		总价格:{{ totalCount(1) }}
+
+
+
+		<br /><br />
+
+		{{ counter }}
+		<button @click="counter++" >点我就加一</button>
+
+		{{ reverse_msg2() }}
+
+		{{ reverse_msg }}
+
+		<ul>
+			
+			<li v-for="(item,index) in tlist" :class="{on:index%2==0,off:index%2!=0}" >
+				
+				{{ item.text }}
+
+			</li>
+
+
+		</ul>
+
+
+		<div v-if="type === 'A'">A</div>
+
+		<div v-else-if="type === 'B'">B</div>
+
+		<div v-else>
+			
+			既不是A也不是B
+
+		</div>
+
+
+
+		<h2 v-if="ok">Hello World</h2>
+
+		<h2 v-show="ok">Hello World</h2>
+		
+		<div v-html="msg"></div>
+
+		{{ msg }}
+
+
+	</div>
 </template>
 
 
 <script>
-    export default{
-        data(){
+	
+	export default{
+		//定义数据
+		data(){
 
-            return{
-                
-                msg:'<h1>这是一个变量</h1>',
-                ok:1,
-                type:'狗',
-                tlist:[{test:'电脑',num:3,prict:9000},{test:'鼠标',num:3,prict:100},{test:'键盘',num:3,prict:200},{test:'耳机',num:3,prict:90}],
-                counter:0,
+			return {
 
-            }  
-            
-            
-        },
+				msg:'<h1>这是一个变量</h1>',
+				ok:0,
+				type:'B',
+				tlist:[{text:'汽车',num:1,price:10},{text:'化妆品',num:1,price:8},{text:'衣服',num:1,price:1},{text:'牛奶',num:1,price:5}],
+				counter:0
 
-        // 监听属性
-        watch:{
-
-            counter:function(nval,oval){
-
-                console.log('计数器由'+oval+'变换为新的'+nval);
-
-            }
-
-        },
-
-        // 计算属性
-        computed:{
-
-            // 反转
-            reverse_msg:function(){
-                console.log(this.msg.split(''));
-
-                return this.msg.split('').reverse().join('');
-
-            }
-
-        },
+			}
 
 
+		},
+		//监听属性
+		watch:{
 
-        // 钩子方法
-        mounted:function(){
-
-
-        },
-
-        // 自定义方法
-        methods:{
-
-            // 购物车总汇
-            totalCount:function(){
-
-                // 默认数量
-                let total = 0;
-                let prict = 0;
-
-                //遍历
-                for (let i=0,l=this.tlist.length;i<l;i++){
-
-                    // 汇总
-                    total += this.tlist[i].num;
-                    prict += (this.tlist[i].num * this.tlist[i].prict);
-
-                }
-
-                return [total,prict]
-
-            },
-
-            
-
-            // // 购物车减法
-            // minus:function(index){
-
-            //     if (this.tlist[index].num > 0){
-
-            //         this.tlist[index].num--;
-
-            //     }
-                    
-
-            // },
-
-            // // 购物车加法
-            // add:function(index){
-
-            //         this.tlist[index].num++;
-                    
-            // },
-            minus:function(index,on){
-
-                if (on){
-                    if (this.tlist[index].num>0){
-                        this.tlist[index].num--;
-                    }
-                    
-                }
-                else{
-                    this.tlist[index].num++;
-                }
-
-            },
+			counter:function(nval,oval){
 
 
-            // 自定义计算属性
-            reverse_msg2:function(){
+				console.log('计数器由'+oval+'变换为新的'+nval);
 
-                console.log(this.msg.split(''));
+			}
 
-                return this.msg.split('').reverse().join('');
+		},
+		//计算属性
+		computed:{
 
-            },
+			//反转
+			reverse_msg:function(){
+
+				console.log(this.msg.split(''));
+
+				return this.msg.split('').reverse().join('');
+
+			}
+
+		},
+		//钩子方法  created
+		mounted:function(){
 
 
-        },
 
-    }
+		},
+		//自定义方法
+		methods:{
+
+			//汇总数量
+			totalCount:function(type){
+
+				//默认数量
+				let total = 0;
+
+				//默认价格
+				let totalprice = 0;
+
+				//遍历
+				for(let i=0,l=this.tlist.length;i<l;i++){
+
+
+					//总数量累加
+					total += parseInt(this.tlist[i].num);
+
+					//总价格相加
+					totalprice += (this.tlist[i].num * this.tlist[i].price);
+
+
+				}
+
+				if(type==0){
+
+				return total;
+
+			}else{
+				return totalprice;
+			}
+
+			},
+			//购物车减法
+			minus:function(index,type){
+
+
+				if(type=="-"){
+
+				if(this.tlist[index].num > 0){
+
+				this.tlist[index].num--;
+
+				}
+
+			}else{
+
+				this.tlist[index].num++;
+			}
+
+			},
+			//购物车加法
+			add:function(index){
+
+		
+				this.tlist[index].num++;
+
+			},
+			//自定义计算属性
+			reverse_msg2:function(){
+
+				console.log(this.msg.split(''));
+
+				return this.msg.split('').reverse().join('');
+
+			}
+
+
+
+		}
+
+	}
 
 </script>
 
 
 <style>
 
-/* .on {background-color: aquamarine;}
-.off {background-color: chartreuse;} */
+.on {
+	background:rebeccapurple;
+	color:white;
+}
+.off {
+	background:red;
+	color:black;
+
+}
 
 </style>

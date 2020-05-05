@@ -8,6 +8,7 @@ import mytest from '@/components/mytest'
 import test from '@/components/test'
 import register from '@/components/register'
 import login from '@/components/login'
+import myprofile from '@/components/myprofile'
 
 Vue.use(Router)
 
@@ -52,6 +53,25 @@ var routes = [
           name:'login',
           component:login
         },
+        {
+          path:'/myprofile',
+          name:'myprofile',
+          component:myprofile,
+          beforeEnter:(to,from,next) =>{
+
+            if(localStorage.getItem("username")){
+
+              console.log('已经登录');
+              next();
+
+            }else{
+
+                console.log('没有登录');
+                next('/login');
+            }
+
+          }
+        }
 ]
 
 export default new Router({

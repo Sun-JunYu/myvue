@@ -1,55 +1,71 @@
 <template>
   <div>
+
 	<myheader></myheader>
+	
 
 	<section class="featured-block text-center">
 		<div class="container">
-			<!-- 头部 -->
+			
 			<div>
+				
+				<Breadcrumb :datas="datas"></Breadcrumb>
 
-				<Breadcrumb :datas='datas'></Breadcrumb>
 
 			</div>
 
-			<!-- 表单 -->
+
 			<div>
-
+				
 				<table>
-
+					
 					<tr>
+						
 						<td>
-							用户名：
+
+							用户名:
+							
 						</td>
+
 						<td>
-							<input type="text" v-model='username''>
+
+							<input type="text" v-model="username" placeholder="请输入用户名" />
+							
 						</td>
+
+
 					</tr>
 
 					<tr>
+						
 						<td>
-							密码：
+
+							密 码:
+							
 						</td>
+
 						<td>
-							<input type="password" v-model='password'>
+
+							<input type="password" v-model="password" />
+							
 						</td>
-					</tr>
-					<tr>
-						<td>
-							手机号：
-						</td>
-						<td>
-							<input type="text" v-model='phone'>
-						</td>
+
+
 					</tr>
 
 					<tr>
+
 						<td></td>
-						<td>
-							<Button color='blue' @click='submit'>提交</Button>
-						</td>
+						
+						<td> <Button @click="submit" color="blue">提 交</Button> </td>
+
 					</tr>
+
+
+
 
 				</table>
+
 
 			</div>
 
@@ -59,8 +75,6 @@
 	</section>
 	
 
-	
-	
 	
 	<footer class="footer">
 
@@ -79,69 +93,58 @@
  
 <script>
 
-// 导入组件
+//导入组件
 import myheader from './myheader.vue'
 
 export default {
   data () {
     return {
-	  msg: "这是一个变量",
-
-	  // 面包屑导航变量
-	  datas:[{title:'首页',route:{name:'index'}},{title:'注册页面'}],
-
-	  // 表单数据
-	  username :'',
-	  password :'',
-	  phone:'',
-	
+      msg: "这是一个变量",
+      //表单数据
+      username:'',
+      password:'',
+      //面包屑导航变量
+      datas:[{title:'首页',route:{name:'index'}},{title:'注册页面'}]
     }
   },
-
-  // 注册组件标签
+  //注册组件标签
   components:{
-	  'myheader':myheader
-  },
 
+  	'myheader':myheader
+
+  },
   mounted:function(){
 
-	
-
-
-	},
+   
+  
+},
   methods:{
 
-	// 定义提交事件
-	submit:function(){
+  	//定义提交事件
+  	submit:function(){
 
-		// 非空验证
-		if (this.username==''){
 
-			this.$Message('您没有输入用户名');
-			return false
+  		//非空验证
+  		if(this.username == ''){
 
-		}
-		else if(this.password == ''){
+  			this.$Message('您没有输入用户名');
+  			return false;
 
-			this.$Message('您没有输入密码');
-			return false
+  		}
 
-		}
+  		//请求后台接口
+  		this.axios.get('http://localhost:8000/register/',{params:{username:this.username,password:this.password}}).then((result) =>{
 
-		// 请求后台接口
-		this.axios.get('http://localhost:8000/register/',{params:{
-			username:this.username,password:this.password,phone:this.phone
-		}}).then((result)=>{
 
-			console.log(result);
+  			console.log(result);
 
-			this.$Message(result.data.message);
+  			this.$Message(result.data.message);
 
-			this.password = '';
 
-		});
+  		});
 
-	}
+
+  	}
 
      
   }
@@ -153,7 +156,7 @@ export default {
 <style>
 
 td {
-	padding: 10px;
+	padding:10px;
 }
 
 </style>
